@@ -95,8 +95,7 @@ class HttpStorage(Storage):
         self.username, self.password = username, password
         self.useragent = useragent
 
-        if collection is not None:
-            url = urlparse.urljoin(url, collection)
+        url = urlparse.urljoin(url, collection or '')
         self.url = url
         self.parsed_url = urlparse.urlparse(self.url)
         self.collection = collection

@@ -262,9 +262,7 @@ class DavStorage(Storage):
                  verify=True, auth=None, useragent=USERAGENT, **kwargs):
         super(DavStorage, self).__init__(**kwargs)
 
-        url = url.rstrip('/') + '/'
-        if collection is not None:
-            url = utils.urlparse.urljoin(url, collection)
+        url = utils.urlparse.urljoin(url.rstrip('/') + '/', collection or '')
         self.session = DavSession(url, username, password, verify, auth,
                                   useragent, dav_header=self.dav_header)
         self.collection = collection
