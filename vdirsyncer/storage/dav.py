@@ -295,10 +295,10 @@ class DavStorage(Storage):
             raise ValueError(href)
         x = utils.urlparse.urljoin(self.session.url, href)
         assert x.startswith(self.session.url)
-        return utils.compat.urlunquote_plus(utils.urlparse.urlsplit(x).path)
+        return utils.urlparse.urlsplit(x).path
 
     def _get_href(self, item):
-        href = utils.compat.urlunquote_plus(item.ident) + self.fileext
+        href = item.ident + self.fileext
         return self._normalize_href(href)
 
     def get(self, href):
